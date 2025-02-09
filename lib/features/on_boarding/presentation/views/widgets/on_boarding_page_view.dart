@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/core/utils/app_colors.dart';
 import 'package:fruits_hub/core/utils/app_images.dart';
+import 'package:fruits_hub/core/utils/app_text_styles.dart';
 import 'package:fruits_hub/features/on_boarding/presentation/views/widgets/page_view_item.dart';
 
 class OnBoardingPageView extends StatelessWidget {
@@ -13,7 +15,9 @@ class OnBoardingPageView extends StatelessWidget {
       controller: pageController,
       children: [
         PageViewItem(
-          isVisible: (pageController.hasClients ? pageController.page!.round() : 0) == 0,
+          isVisible:
+              (pageController.hasClients ? pageController.page!.round() : 0) ==
+                  0,
           image: Assets.assetsImagesPageViewItem1Image,
           backgroundImage: Assets.assetsImagesPageViewItem1BgImage,
           subtitle:
@@ -21,18 +25,29 @@ class OnBoardingPageView extends StatelessWidget {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('مرحبًا بك في'),
-              Text('Fruits'),
-              Text('HUB'),
+              Text(
+                'مرحبًا بك في',
+                style: TextStyles.bold23,
+              ),
+              Text(
+                ' HUB',
+                style: TextStyles.bold23.copyWith(color: AppColors.secondaryColor),
+              ),
+              Text(
+                'Fruits',
+                style: TextStyles.bold23.copyWith(color: AppColors.primaryColor),
+              ),
             ],
           ),
         ),
         PageViewItem(
-          isVisible: (pageController.hasClients ? pageController.page!.round() : 0) != 0,
+          isVisible:
+              (pageController.hasClients ? pageController.page!.round() : 0) !=
+                  0,
           image: Assets.assetsImagesPageViewItem2Image,
           backgroundImage: Assets.assetsImagesPageViewItem2BgImage,
           subtitle:
-          'نقدم لك أفضل الفواكه المختارة بعناية. اطلع على التفاصيل والصور والتقييمات لتتأكد من اختيار الفاكهة المثالية',
+              'نقدم لك أفضل الفواكه المختارة بعناية. اطلع على التفاصيل والصور والتقييمات لتتأكد من اختيار الفاكهة المثالية',
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
