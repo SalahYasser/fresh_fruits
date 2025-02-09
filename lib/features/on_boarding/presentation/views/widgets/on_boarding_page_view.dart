@@ -13,11 +13,26 @@ class OnBoardingPageView extends StatelessWidget {
       controller: pageController,
       children: [
         PageViewItem(
+          isVisible: (pageController.hasClients ? pageController.page!.round() : 0) == 0,
+          image: Assets.assetsImagesPageViewItem1Image,
+          backgroundImage: Assets.assetsImagesPageViewItem1BgImage,
+          subtitle:
+              'اكتشف تجربة تسوق فريدة مع FruitHUB. استكشف مجموعتنا الواسعة من الفواكه الطازجة الممتازة واحصل على أفضل العروض والجودة العالية.',
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('مرحبًا بك في'),
+              Text('Fruits'),
+              Text('HUB'),
+            ],
+          ),
+        ),
+        PageViewItem(
           isVisible: (pageController.hasClients ? pageController.page!.round() : 0) != 0,
           image: Assets.assetsImagesPageViewItem2Image,
           backgroundImage: Assets.assetsImagesPageViewItem2BgImage,
           subtitle:
-              'نقدم لك أفضل الفواكه المختارة بعناية. اطلع على التفاصيل والصور والتقييمات لتتأكد من اختيار الفاكهة المثالية',
+          'نقدم لك أفضل الفواكه المختارة بعناية. اطلع على التفاصيل والصور والتقييمات لتتأكد من اختيار الفاكهة المثالية',
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -31,21 +46,6 @@ class OnBoardingPageView extends StatelessWidget {
                   color: Color(0xFF0C0D0D),
                 ),
               ),
-            ],
-          ),
-        ),
-        PageViewItem(
-          isVisible: (pageController.hasClients ? pageController.page!.round() : 0) == 0,
-          image: Assets.assetsImagesPageViewItem1Image,
-          backgroundImage: Assets.assetsImagesPageViewItem1BgImage,
-          subtitle:
-              'اكتشف تجربة تسوق فريدة مع FruitHUB. استكشف مجموعتنا الواسعة من الفواكه الطازجة الممتازة واحصل على أفضل العروض والجودة العالية.',
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('مرحبًا بك في'),
-              Text('Fruits'),
-              Text('HUB'),
             ],
           ),
         ),
