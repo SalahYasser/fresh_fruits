@@ -4,6 +4,8 @@ import 'package:fruits_hub/core/utils/app_colors.dart';
 import 'package:fruits_hub/core/utils/app_text_styles.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/core/widgets/custom_text_form_field.dart';
+import 'package:fruits_hub/core/widgets/dont_have_account.dart';
+import 'package:fruits_hub/core/widgets/or_divider.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -15,17 +17,17 @@ class LoginViewBody extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 24,
             ),
-            CustomTextFormField(
+            const CustomTextFormField(
               textInputType: TextInputType.emailAddress,
               hintText: 'البريد الالكتروني',
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
-            CustomTextFormField(
+            const CustomTextFormField(
               textInputType: TextInputType.emailAddress,
               hintText: 'كلمة المرور',
               suffixIcon: Icon(
@@ -33,7 +35,7 @@ class LoginViewBody extends StatelessWidget {
                 color: Color(0xffC9CECF),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Row(
@@ -46,40 +48,21 @@ class LoginViewBody extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 33,
             ),
             CustomButton(
               onPressed: () {},
               text: 'تسجيل دخول',
             ),
-            SizedBox(
+            const SizedBox(
               height: 33,
             ),
-            Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: 'لا تمتلك حساب؟ ',
-                    style: TextStyles.semiBold16.copyWith(
-                      color: Color(0xFF949D9E),
-                      height: 1.40,
-                    ),
-                  ),
-                  TextSpan(
-                    text: 'قم بإنشاء حساب',
-                    style: TextStyles.semiBold16.copyWith(
-                      color: Color(0xFF1B5E37),
-                      height: 1.40,
-                    ),
-                  ),
-                ],
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
+            const DontHaveAccount(),
+            const SizedBox(
               height: 33,
             ),
+            const OrDivider(),
           ],
         ),
       ),
