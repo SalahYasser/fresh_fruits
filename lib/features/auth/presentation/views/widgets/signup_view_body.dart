@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/constants.dart';
 import 'package:fruits_hub/core/widgets/custom_text_form_field.dart';
+import 'package:fruits_hub/features/auth/presentation/views/widgets/terms_and_conditions.dart';
 
 class SignupViewBody extends StatelessWidget {
   const SignupViewBody({super.key});
@@ -29,6 +30,7 @@ class SignupViewBody extends StatelessWidget {
               suffixIcon: Icon(Icons.remove_red_eye),
             ),
             const SizedBox(height: 16),
+            const TermsAndConditions(),
           ],
         ),
       ),
