@@ -4,6 +4,10 @@ class Assets {
   
   /// Assets for assetsImagesAppIcon
   /// assets/images/app_icon.png
+  static const String assetsImagesCheck = "assets/images/Check.svg";
+
+  /// Assets for assetsImagesAppIcon
+  /// assets/images/app_icon.png
   static const String assetsImagesAppIcon = "assets/images/app_icon.png";
 
   /// Assets for assetsImagesAppleLogo
