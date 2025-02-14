@@ -25,7 +25,7 @@ class AuthRepoImpl extends AuthRepo {
       return left(ServerFailure(e.message));
     } catch (e) {
       return left(
-        ServerFailure('An error occurred. Please try again later.'),
+        ServerFailure('يوجد خطأ, حاول مرة أخرى'),
       );
     }
   }
