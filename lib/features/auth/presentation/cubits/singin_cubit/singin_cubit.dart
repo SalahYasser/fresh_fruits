@@ -10,7 +10,7 @@ class SigninCubit extends Cubit<SigninState> {
 
   final AuthRepo authRepo;
 
-  Future<void> signIn(String email, String password) async {
+  Future<void> signin(String email, String password) async {
 
     emit(SigninLoading());
 
