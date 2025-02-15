@@ -28,7 +28,7 @@ class SocialLoginButton extends StatelessWidget {
           ),
         ),
         child: ListTile(
-          visualDensity: VisualDensity(
+          visualDensity: const VisualDensity(
             vertical: VisualDensity.minimumDensity,
           ),
           leading: SvgPicture.asset(image),
