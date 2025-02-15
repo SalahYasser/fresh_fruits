@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/helper_functions/build_app_bar.dart';
-import 'package:fruits_hub/features/auth/presentation/views/widgets/login_view_body.dart';
+import 'package:fruits_hub/features/auth/presentation/views/widgets/signin_view_body.dart';
 
-class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+class SigninView extends StatelessWidget {
+  const SigninView({super.key});
 
   static const String routeName = 'login';
 
@@ -11,7 +11,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context, title: 'تسجيل الدخول'),
-      body: const LoginViewBody(),
+      body: const SigninViewBody(),
     );
   }
 }
