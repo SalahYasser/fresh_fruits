@@ -61,6 +61,8 @@ class AuthRepoImpl extends AuthRepo {
       var user = await firebaseAuthService.signInWithEmailAndPassword(
           email: email, password: password);
 
+      // customSnackBar(context, 'تم تسجيل الدخول بنجاح');
+
       return right(UserModel.fromFirebaseUser(user));
     } on CustomException catch (e) {
       return left(ServerFailure(e.message));
@@ -80,7 +82,16 @@ class AuthRepoImpl extends AuthRepo {
 
       var userEntity = UserModel.fromFirebaseUser(user);
 
-      await addUserDate(user: userEntity);
+      var userExists = await dataBaseService.checkIsDataExists(
+        path: BackendEndpoint.isUserExists,
+        documentId: user.uid,
+      );
+
+      if (userExists) {
+        await getUserDate(uid: user.uid);
+      } else {
+        await addUserDate(user: userEntity);
+      }
       return right(userEntity);
     } catch (e) {
       await deleteUser(user);
@@ -99,7 +110,16 @@ class AuthRepoImpl extends AuthRepo {
 
       var userEntity = UserModel.fromFirebaseUser(user);
 
-      await addUserDate(user: userEntity);
+      var userExists = await dataBaseService.checkIsDataExists(
+        path: BackendEndpoint.isUserExists,
+        documentId: user.uid,
+      );
+
+      if (userExists) {
+        await getUserDate(uid: user.uid);
+      } else {
+        await addUserDate(user: userEntity);
+      }
       return right(userEntity);
     } catch (e) {
       await deleteUser(user);
@@ -118,7 +138,16 @@ class AuthRepoImpl extends AuthRepo {
 
       var userEntity = UserModel.fromFirebaseUser(user);
 
-      await addUserDate(user: userEntity);
+      var userExists = await dataBaseService.checkIsDataExists(
+        path: BackendEndpoint.isUserExists,
+        documentId: user.uid,
+      );
+
+      if (userExists) {
+        await getUserDate(uid: user.uid);
+      } else {
+        await addUserDate(user: userEntity);
+      }
       return right(userEntity);
     } catch (e) {
       await deleteUser(user);

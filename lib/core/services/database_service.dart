@@ -5,6 +5,13 @@ abstract class DataBaseService {
     String? documentId,
   });
 
-  Future<Map<String, dynamic>> getDate(
-      {required String path, required String documentId});
+  Future<Map<String, dynamic>> getDate({
+    required String path,
+    required String documentId,
+  });
+
+  Future<bool> checkIsDataExists({
+    required String path,
+    required String documentId,
+  });
 }
