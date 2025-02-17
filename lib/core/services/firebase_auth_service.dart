@@ -89,7 +89,7 @@ class FirebaseAuthService {
     final nonce = sha256ofString(rawNonce);
     final LoginResult loginResult =
         await FacebookAuth.instance.login(nonce: nonce);
-    
+
     OAuthCredential facebookAuthCredential;
     if (Platform.isIOS) {
       switch (loginResult.accessToken!.type) {
@@ -164,5 +164,10 @@ class FirebaseAuthService {
     // not match the nonce in `appleCredential.identityToken`, sign in will fail.
     return (await FirebaseAuth.instance.signInWithCredential(oauthCredential))
         .user!;
+  }
+
+
+  Future deleteUser() async {
+    await FirebaseAuth.instance.currentUser!.delete();
   }
 }
