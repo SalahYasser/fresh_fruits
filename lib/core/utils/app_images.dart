@@ -54,8 +54,24 @@ class Assets {
   /// assets/images/profile_picture.png
   static const String assetsImagesProfilePicture = "assets/images/profile_picture.png";
 
+  /// Assets for assetsImagesSearchFiltering
+  /// assets/images/search-filtering.svg
+  static const String assetsImagesSearchFiltering = "assets/images/search-filtering.svg";
+
+  /// Assets for assetsImagesSearchIcon
+  /// assets/images/search-icon.svg
+  static const String assetsImagesSearchIcon = "assets/images/search-icon.svg";
+
   /// Assets for assetsImagesSplashBottom
   /// assets/images/splash_bottom.svg
   static const String assetsImagesSplashBottom = "assets/images/splash_bottom.svg";
+
+  /// Assets for assetsImagesTest
+  /// assets/images/test.svg
+  static const String assetsImagesTest = "assets/images/test.svg";
+
+  /// Assets for assetsImagesTest2
+  /// assets/images/test2.png
+  static const String assetsImagesTest2 = "assets/images/test2.png";
 }
 

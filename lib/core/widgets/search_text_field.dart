@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/core/utils/app_images.dart';
 import 'package:fruits_hub/core/utils/app_text_styles.dart';
-import 'package:fruits_hub/generated/assets.dart';
 import 'package:svg_flutter/svg.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -25,13 +25,13 @@ class CustomTextField extends StatelessWidget {
           prefixIcon: SizedBox(
             width: 20,
             child: Center(
-              child: SvgPicture.asset(Assets.imagesSearchIcon),
+              child: SvgPicture.asset(Assets.assetsImagesSearchIcon),
             ),
           ),
           suffixIcon: SizedBox(
             width: 20,
             child: Center(
-              child: SvgPicture.asset(Assets.imagesSearchFiltering),
+              child: SvgPicture.asset(Assets.assetsImagesSearchFiltering),
             ),
           ),
           filled: true,
