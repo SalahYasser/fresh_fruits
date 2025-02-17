@@ -4,18 +4,18 @@ class Assets {
   
   /// Assets for assetsImagesAppIcon
   /// assets/images/app_icon.png
-  static const String assetsImagesCheck = "assets/images/Check.svg";
-
-  /// Assets for assetsImagesAppIcon
-  /// assets/images/app_icon.png
   static const String assetsImagesAppIcon = "assets/images/app_icon.png";
 
   /// Assets for assetsImagesAppleLogo
   /// assets/images/apple_logo.svg
   static const String assetsImagesAppleLogo = "assets/images/apple_logo.svg";
 
+  /// Assets for assetsImagesCheck
+  /// assets/images/Check.svg
+  static const String assetsImagesCheck = "assets/images/Check.svg";
+
   /// Assets for assetsImagesFacebookLogo
-  /// assets/images/facebook-logo.svg
+  /// assets/images/facebook_logo.svg
   static const String assetsImagesFacebookLogo = "assets/images/facebook_logo.svg";
 
   /// Assets for assetsImagesGoogleIcon
@@ -25,6 +25,10 @@ class Assets {
   /// Assets for assetsImagesLogo
   /// assets/images/logo.svg
   static const String assetsImagesLogo = "assets/images/logo.svg";
+
+  /// Assets for assetsImagesNotification
+  /// assets/images/notification.svg
+  static const String assetsImagesNotification = "assets/images/notification.svg";
 
   /// Assets for assetsImagesPageViewItem1BgImage
   /// assets/images/page_view_item1_bg_image.svg
@@ -45,6 +49,10 @@ class Assets {
   /// Assets for assetsImagesPlant
   /// assets/images/plant.svg
   static const String assetsImagesPlant = "assets/images/plant.svg";
+
+  /// Assets for assetsImagesProfilePicture
+  /// assets/images/profile_picture.png
+  static const String assetsImagesProfilePicture = "assets/images/profile_picture.png";
 
   /// Assets for assetsImagesSplashBottom
   /// assets/images/splash_bottom.svg
