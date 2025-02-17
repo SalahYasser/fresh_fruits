@@ -134,6 +134,7 @@ class AuthRepoImpl extends AuthRepo {
     await dataBaseService.addDate(
       path: BackendEndpoint.addUserData,
       data: user.toMap(),
+      documentId: user.uId,
     );
   }
 

@@ -5,9 +5,16 @@ class FireStoreService implements DataBaseService {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   @override
-  Future<void> addDate(
-      {required String path, required Map<String, dynamic> data}) async {
-    await firestore.collection(path).add(data);
+  Future<void> addDate({
+    required String path,
+    required Map<String, dynamic> data,
+    String? documentId,
+  }) async {
+    if (documentId != null) {
+      await firestore.collection(path).doc(documentId).set(data);
+    } else {
+      await firestore.collection(path).add(data);
+    }
   }
 
   @override
