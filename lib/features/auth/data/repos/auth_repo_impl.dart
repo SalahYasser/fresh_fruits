@@ -21,25 +21,26 @@ class AuthRepoImpl extends AuthRepo {
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
       String email, String password, String name) async {
-
     User? user;
 
     try {
-       user = await firebaseAuthService.createUserWithEmailAndPassword(
+      user = await firebaseAuthService.createUserWithEmailAndPassword(
           email: email, password: password);
 
-      var userEntity = UserModel.fromFirebaseUser(user);
+      var userEntity = UserEntity(
+        email: email,
+        name: name,
+        uId: user.uid,
+      );
 
       await addUserDate(user: userEntity);
 
       return right(userEntity);
     } on CustomException catch (e) {
-
       if (user != null) {
         await firebaseAuthService.deleteUser();
       }
       return left(ServerFailure(e.message));
-
     } catch (e) {
       if (user != null) {
         await firebaseAuthService.deleteUser();
@@ -113,7 +114,6 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future addUserDate({required UserEntity user}) async {
-    // throw CustomException(message: 'salah');
     await dataBaseService.addDate(
       path: BackendEndpoint.addUserData,
       data: user.toMap(),
