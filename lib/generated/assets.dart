@@ -19,6 +19,8 @@ class Assets {
   static const String imagesPageViewItem2Image = 'assets/images/page_view_item2_image.svg';
   static const String imagesPlant = 'assets/images/plant.svg';
   static const String imagesProfilePicture = 'assets/images/profile_picture.png';
+  static const String imagesSearchFiltering = 'assets/images/search-filtering.svg';
+  static const String imagesSearchIcon = 'assets/images/search-icon.svg';
   static const String imagesSplashBottom = 'assets/images/splash_bottom.svg';
 
 }
