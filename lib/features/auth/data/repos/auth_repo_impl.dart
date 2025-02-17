@@ -33,7 +33,7 @@ class AuthRepoImpl extends AuthRepo {
       await addUserDate(user: userEntity);
 
       return right(userEntity);
-    } on CustomExceptions catch (e) {
+    } on CustomException catch (e) {
 
       if (user != null) {
         await firebaseAuthService.deleteUser();
@@ -59,7 +59,7 @@ class AuthRepoImpl extends AuthRepo {
           email: email, password: password);
 
       return right(UserModel.fromFirebaseUser(user));
-    } on CustomExceptions catch (e) {
+    } on CustomException catch (e) {
       return left(ServerFailure(e.message));
     } catch (e) {
       log('Exception in AuthRepoImpl.signInWithEmailAndPassword: ${e.toString()}');
@@ -113,6 +113,7 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future addUserDate({required UserEntity user}) async {
+    // throw CustomException(message: 'salah');
     await dataBaseService.addDate(
       path: BackendEndpoint.addUserData,
       data: user.toMap(),

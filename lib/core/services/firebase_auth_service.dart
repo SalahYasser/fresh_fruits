@@ -25,17 +25,17 @@ class FirebaseAuthService {
       log('Exception in FirebaseAuthService.createUserWithEmailAndPassword: ${e.toString()} and code is ${e.code.toString()} ');
 
       if (e.code == 'weak-password') {
-        throw CustomExceptions(message: 'كلمة المرور ضعيفة جدا');
+        throw CustomException(message: 'كلمة المرور ضعيفة جدا');
       } else if (e.code == 'email-already-in-use') {
-        throw CustomExceptions(message: 'البريد الإلكتروني مستخدم بالفعل');
+        throw CustomException(message: 'البريد الإلكتروني مستخدم بالفعل');
       } else if (e.code == 'network-request-failed') {
-        throw CustomExceptions(message: 'الاتصال بالانترنت غير متوفر');
+        throw CustomException(message: 'الاتصال بالانترنت غير متوفر');
       } else {
-        throw CustomExceptions(message: 'يوجد خطأ, حاول مرة أخرى');
+        throw CustomException(message: 'يوجد خطأ, حاول مرة أخرى');
       }
     } catch (e) {
       log('Exception in FirebaseAuthService.createUserWithEmailAndPassword: ${e.toString()}');
-      throw CustomExceptions(message: 'يوجد خطأ, حاول مرة أخرى');
+      throw CustomException(message: 'يوجد خطأ, حاول مرة أخرى');
     }
   }
 
@@ -50,22 +50,22 @@ class FirebaseAuthService {
       log('Exception in FirebaseAuthService.signInWithEmailAndPassword: ${e.toString()} and code is ${e.code.toString()} ');
 
       if (e.code == 'user-not-found') {
-        throw CustomExceptions(
+        throw CustomException(
             message: 'البريد الإلكتروني او كلمة المرور غير صحيح');
       } else if (e.code == 'wrong-password') {
-        throw CustomExceptions(
+        throw CustomException(
             message: 'البريد الإلكتروني او كلمة المرور غير صحيح');
       } else if (e.code == 'invalid-credential') {
-        throw CustomExceptions(
+        throw CustomException(
             message: 'البريد الإلكتروني او كلمة المرور غير صحيح');
       } else if (e.code == 'network-request-failed') {
-        throw CustomExceptions(message: 'الاتصال بالانترنت غير متوفر');
+        throw CustomException(message: 'الاتصال بالانترنت غير متوفر');
       } else {
-        throw CustomExceptions(message: 'يوجد خطأ, حاول مرة أخرى');
+        throw CustomException(message: 'يوجد خطأ, حاول مرة أخرى');
       }
     } catch (e) {
       log('Exception in FirebaseAuthService.signInWithEmailAndPassword: ${e.toString()}');
-      throw CustomExceptions(message: 'يوجد خطأ, حاول مرة أخرى');
+      throw CustomException(message: 'يوجد خطأ, حاول مرة أخرى');
     }
   }
 
