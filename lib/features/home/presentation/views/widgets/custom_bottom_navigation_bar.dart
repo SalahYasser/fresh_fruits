@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_hub/core/utils/app_images.dart';
-import 'package:svg_flutter/svg.dart';
+import 'package:fruits_hub/features/home/domain/entities/bottom_navigation_bar_entity.dart';
+import 'package:fruits_hub/features/home/presentation/views/widgets/navigation_bar_item.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   const CustomBottomNavigationBar({super.key});
@@ -27,42 +27,15 @@ class CustomBottomNavigationBar extends StatelessWidget {
           )
         ],
       ),
-      child: Row(),
+      child: Row(
+        children: bottomNavigationBarItems.map((e) {
+          return NavigationBarItem(
+            isActive: false,
+            bottomNavigationBarEntity: e,
+          );
+        }).toList(),
+      ),
     );
   }
 }
 
-class NavigationBarItem extends StatelessWidget {
-  const NavigationBarItem({super.key, required this.isActive});
-
-  final bool isActive;
-
-  @override
-  Widget build(BuildContext context) {
-    return isActive
-        ? ActiveItem(image: Assets.assetsImagesBoldHome)
-        : InActiveItem(image: Assets.assetsImagesOutlineHome);
-  }
-}
-
-class ActiveItem extends StatelessWidget {
-  const ActiveItem({super.key, required this.image});
-
-  final String image;
-
-  @override
-  Widget build(BuildContext context) {
-    return SvgPicture.asset(image);
-  }
-}
-
-class InActiveItem extends StatelessWidget {
-  const InActiveItem({super.key, required this.image});
-
-  final String image;
-
-  @override
-  Widget build(BuildContext context) {
-    return SvgPicture.asset(image);
-  }
-}
