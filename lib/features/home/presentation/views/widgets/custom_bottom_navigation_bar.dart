@@ -2,8 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:fruits_hub/features/home/domain/entities/bottom_navigation_bar_entity.dart';
 import 'package:fruits_hub/features/home/presentation/views/widgets/navigation_bar_item.dart';
 
-class CustomBottomNavigationBar extends StatelessWidget {
+class CustomBottomNavigationBar extends StatefulWidget {
   const CustomBottomNavigationBar({super.key});
+
+  @override
+  State<CustomBottomNavigationBar> createState() =>
+      _CustomBottomNavigationBarState();
+}
+
+class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
+  int activeItem = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +36,17 @@ class CustomBottomNavigationBar extends StatelessWidget {
         ],
       ),
       child: Row(
-        children: bottomNavigationBarItems.map((e) {
-          return NavigationBarItem(
-            isActive: false,
-            bottomNavigationBarEntity: e,
-          );
-        }).toList(),
+        children: bottomNavigationBarItems.asMap().entries.map(
+          (e) {
+            var index = e.key;
+            var entity = e.value;
+            return NavigationBarItem(
+              isActive: activeItem == index,
+              bottomNavigationBarEntity: entity,
+            );
+          },
+        ).toList(),
       ),
     );
   }
 }
-
