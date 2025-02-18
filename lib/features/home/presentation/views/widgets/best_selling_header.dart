@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/utils/app_text_styles.dart';
-import 'package:fruits_hub/features/auth/best_selling_fruits/presentation/views/best_selling_view.dart';
+import 'package:fruits_hub/features/best_selling_fruits/presentation/views/best_selling_view.dart';
 
 class BestSellingHeader extends StatelessWidget {
   const BestSellingHeader({super.key});
