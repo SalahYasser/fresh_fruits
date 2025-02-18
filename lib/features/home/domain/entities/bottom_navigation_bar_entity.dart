@@ -14,8 +14,8 @@ class BottomNavigationBarEntity {
 
 List<BottomNavigationBarEntity> get bottomNavigationBarItems => [
       BottomNavigationBarEntity(
-        activeImage: Assets.assetsImagesOutlineHome,
-        inActiveImage: Assets.assetsImagesBoldHome,
+        activeImage: Assets.assetsImagesBoldHome,
+        inActiveImage: Assets.assetsImagesOutlineHome,
         name: 'الرئيسية',
       ),
       BottomNavigationBarEntity(

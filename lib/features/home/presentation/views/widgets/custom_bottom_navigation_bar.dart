@@ -11,7 +11,7 @@ class CustomBottomNavigationBar extends StatefulWidget {
 }
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
-  int activeItem = 0;
+  int activeIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +40,19 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           (e) {
             var index = e.key;
             var entity = e.value;
-            return NavigationBarItem(
-              isActive: activeItem == index,
-              bottomNavigationBarEntity: entity,
+            return Expanded(
+              flex: activeIndex == index ? 3 : 2,
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    activeIndex = index;
+                  });
+                },
+                child: NavigationBarItem(
+                  isActive: activeIndex == index,
+                  bottomNavigationBarEntity: entity,
+                ),
+              ),
             );
           },
         ).toList(),

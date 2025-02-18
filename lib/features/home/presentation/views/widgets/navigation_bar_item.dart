@@ -18,7 +18,7 @@ class NavigationBarItem extends StatelessWidget {
     return isActive
         ? ActiveItem(
             text: bottomNavigationBarEntity.name,
-            image: bottomNavigationBarEntity.inActiveImage,
+            image: bottomNavigationBarEntity.activeImage,
           )
         : InActiveItem(image: bottomNavigationBarEntity.inActiveImage);
   }
