@@ -14,6 +14,7 @@ import 'package:fruits_hub/features/auth/data/models/user_model.dart';
 import 'package:fruits_hub/features/auth/domain/entities/user_entity.dart';
 import 'package:fruits_hub/features/auth/domain/repos/auth_repo.dart';
 
+
 class AuthRepoImpl extends AuthRepo {
   final FirebaseAuthService firebaseAuthService;
   final DataBaseService dataBaseService;
@@ -36,7 +37,7 @@ class AuthRepoImpl extends AuthRepo {
         uId: user.uid,
       );
 
-      await addUserDate(user: userEntity);
+      await addUserData(user: userEntity);
 
       return right(userEntity);
     } on CustomException catch (e) {
@@ -64,9 +65,10 @@ class AuthRepoImpl extends AuthRepo {
       var user = await firebaseAuthService.signInWithEmailAndPassword(
           email: email, password: password);
 
-      // customSnackBar(context, 'تم تسجيل الدخول بنجاح');
+      var userEntity = await getUserData(uid: user.uid);
+      await saveUserData(user: userEntity);
 
-      return right(UserModel.fromFirebaseUser(user));
+      return right(userEntity);
     } on CustomException catch (e) {
       return left(ServerFailure(e.message));
     } catch (e) {
@@ -85,15 +87,15 @@ class AuthRepoImpl extends AuthRepo {
 
       var userEntity = UserModel.fromFirebaseUser(user);
 
-      var userExists = await dataBaseService.checkIsDataExists(
+      var userExists = await dataBaseService.checkIfDataExists(
         path: BackendEndpoint.isUserExists,
         documentId: user.uid,
       );
 
       if (userExists) {
-        await getUserDate(uid: user.uid);
+        await getUserData(uid: user.uid);
       } else {
-        await addUserDate(user: userEntity);
+        await addUserData(user: userEntity);
       }
       return right(userEntity);
     } catch (e) {
@@ -113,15 +115,15 @@ class AuthRepoImpl extends AuthRepo {
 
       var userEntity = UserModel.fromFirebaseUser(user);
 
-      var userExists = await dataBaseService.checkIsDataExists(
+      var userExists = await dataBaseService.checkIfDataExists(
         path: BackendEndpoint.isUserExists,
         documentId: user.uid,
       );
 
       if (userExists) {
-        await getUserDate(uid: user.uid);
+        await getUserData(uid: user.uid);
       } else {
-        await addUserDate(user: userEntity);
+        await addUserData(user: userEntity);
       }
       return right(userEntity);
     } catch (e) {
@@ -141,15 +143,15 @@ class AuthRepoImpl extends AuthRepo {
 
       var userEntity = UserModel.fromFirebaseUser(user);
 
-      var userExists = await dataBaseService.checkIsDataExists(
+      var userExists = await dataBaseService.checkIfDataExists(
         path: BackendEndpoint.isUserExists,
         documentId: user.uid,
       );
 
       if (userExists) {
-        await getUserDate(uid: user.uid);
+        await getUserData(uid: user.uid);
       } else {
-        await addUserDate(user: userEntity);
+        await addUserData(user: userEntity);
       }
       return right(userEntity);
     } catch (e) {
@@ -162,15 +164,15 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future addUserDate({required UserEntity user}) async {
-    await dataBaseService.addDate(
-      path: BackendEndpoint.addUserData,
-      data: UserModel.fromEntity(user).toMap());
+  Future addUserData({required UserEntity user}) async {
+    await dataBaseService.addData(
+        path: BackendEndpoint.addUserData,
+        data: UserModel.fromEntity(user).toMap());
   }
 
   @override
-  Future<UserEntity> getUserDate({required String uid}) async {
-    var userData = await dataBaseService.getDate(
+  Future<UserEntity> getUserData({required String uid}) async {
+    var userData = await dataBaseService.getData(
       path: BackendEndpoint.getUserData,
       documentId: uid,
     );
@@ -178,7 +180,7 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future saveUserDate({required UserEntity user}) async {
+  Future saveUserData({required UserEntity user}) async {
     var jsonData = jsonEncode(UserModel.fromEntity(user).toMap());
     await Prefs.setString(kUserData, jsonData);
   }
