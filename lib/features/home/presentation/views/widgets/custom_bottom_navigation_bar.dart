@@ -27,10 +27,32 @@ class CustomBottomNavigationBar extends StatelessWidget {
           )
         ],
       ),
-      child: InActiveItem(
-        image: Assets.assetsImagesOutlineHome
-      ),
+      child: Row(),
     );
+  }
+}
+
+class NavigationBarItem extends StatelessWidget {
+  const NavigationBarItem({super.key, required this.isActive});
+
+  final bool isActive;
+
+  @override
+  Widget build(BuildContext context) {
+    return isActive
+        ? ActiveItem(image: Assets.assetsImagesBoldHome)
+        : InActiveItem(image: Assets.assetsImagesOutlineHome);
+  }
+}
+
+class ActiveItem extends StatelessWidget {
+  const ActiveItem({super.key, required this.image});
+
+  final String image;
+
+  @override
+  Widget build(BuildContext context) {
+    return SvgPicture.asset(image);
   }
 }
 
