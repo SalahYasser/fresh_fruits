@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:fruits_hub/core/models/review_model.dart';
 
-import '../entities/add_product_input/ProductEntity.dart';
-
 class ProductModel {
   final String name;
   final String code;
@@ -16,6 +14,7 @@ class ProductModel {
   final bool isOrganic;
   final int numOfCalories;
   final int unitAmount;
+  final num sellingCount;
   final num avgRating = 0;
   final num ratingCount = 0;
   final List<ReviewModel> reviews;
@@ -30,29 +29,27 @@ class ProductModel {
     required this.expirationMonths,
     required this.numOfCalories,
     required this.unitAmount,
+    required this.sellingCount,
     this.isOrganic = false,
     this.imageUrl,
     required this.reviews,
   });
 
-  factory ProductModel.fromEntity(
-    ProductEntity addProductInputEntity,
-  ) {
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
-      reviews: addProductInputEntity.reviews
-          .map((e) => ReviewModel.fromEntity(e))
-          .toList(),
-      name: addProductInputEntity.name,
-      code: addProductInputEntity.code,
-      description: addProductInputEntity.description,
-      price: addProductInputEntity.price,
-      image: addProductInputEntity.image,
-      isFeatured: addProductInputEntity.isFeatured,
-      imageUrl: addProductInputEntity.imageUrl,
-      expirationMonths: addProductInputEntity.expirationMonths,
-      numOfCalories: addProductInputEntity.numOfCalories,
-      unitAmount: addProductInputEntity.unitAmount,
-      isOrganic: addProductInputEntity.isOrganic,
+      name: json['name'],
+      code: json['code'],
+      description: json['description'],
+      price: json['price'],
+      image: File(json['image']),
+      isFeatured: json['isFeatured'],
+      expirationMonths: json['expirationMonths'],
+      numOfCalories: json['numOfCalories'],
+      unitAmount: json['unitAmount'],
+      isOrganic: json['isOrganic'],
+      imageUrl: json['imageUrl'],
+      reviews: json['reviews'].map((e) => ReviewModel.fromJson(e)).toList(),
+      sellingCount: json['sellingCount'],
     );
   }
 
