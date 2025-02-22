@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/entities/add_product_input/ProductEntity.dart';
 import 'package:fruits_hub/core/utils/app_colors.dart';
-import 'package:fruits_hub/core/utils/app_images.dart';
 import 'package:fruits_hub/core/utils/app_text_styles.dart';
 
 class FruitItem extends StatelessWidget {
@@ -36,15 +35,17 @@ class FruitItem extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                Image.asset(
-                  Assets.assetsImagesTest2,
+                Flexible(
+                  child: Image.network(
+                    productEntity.imageUrl!,
+                  ),
                 ),
                 SizedBox(
                   height: 24,
                 ),
                 ListTile(
                   title: Text(
-                    'بطيخ',
+                    productEntity.name,
                     textAlign: TextAlign.right,
                     style: TextStyles.semiBold13,
                   ),
@@ -52,7 +53,7 @@ class FruitItem extends StatelessWidget {
                     TextSpan(
                       children: [
                         TextSpan(
-                          text: '20جنية ',
+                          text: '${productEntity.price} جنية ',
                           style: TextStyles.bold13.copyWith(
                             color: AppColors.secondaryColor,
                           ),
