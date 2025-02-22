@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:fruits_hub/core/models/review_model.dart';
 
 import '../entities/add_product_input/ProductEntity.dart';
@@ -9,7 +7,6 @@ class ProductModel {
   final String code;
   final String description;
   final num price;
-  final File image;
   final bool isFeatured;
   String? imageUrl;
   final int expirationMonths;
@@ -26,7 +23,6 @@ class ProductModel {
     required this.code,
     required this.description,
     required this.price,
-    required this.image,
     required this.isFeatured,
     required this.expirationMonths,
     required this.numOfCalories,
@@ -43,7 +39,6 @@ class ProductModel {
       code: json['code'],
       description: json['description'],
       price: json['price'],
-      image: File(json['image']),
       isFeatured: json['isFeatured'],
       expirationMonths: json['expirationMonths'],
       numOfCalories: json['numOfCalories'],
@@ -61,7 +56,6 @@ class ProductModel {
       code: code,
       description: description,
       price: price,
-      image: image,
       isFeatured: isFeatured,
       expirationMonths: expirationMonths,
       numOfCalories: numOfCalories,

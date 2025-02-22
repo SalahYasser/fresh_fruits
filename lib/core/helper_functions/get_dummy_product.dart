@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:fruits_hub/core/entities/add_product_input/ProductEntity.dart';
 
 ProductEntity getDummyProduct() {
@@ -8,7 +6,6 @@ ProductEntity getDummyProduct() {
     code: 'APL',
     description: 'The apple is a sweet, edible fruit produced by an apple tree (Malus domestica).',
     price: 10,
-    image: File(''),
     isFeatured: true,
     expirationMonths: 12,
     numOfCalories: 100,
