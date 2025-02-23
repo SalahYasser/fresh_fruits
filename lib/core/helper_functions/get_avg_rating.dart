@@ -1,7 +1,8 @@
-import 'package:fruits_hub/core/entities/review/review_entity.dart';
+import 'package:fruits_hub/core/models/review_model.dart';
 
-num getAvgRating(List<ReviewEntity> reviews) {
-  num sum = 0;
+num getAvgRating(List<ReviewModel> reviews) {
+
+  var sum = 0.0;
 
   for (var review in reviews) {
     sum += review.rating;

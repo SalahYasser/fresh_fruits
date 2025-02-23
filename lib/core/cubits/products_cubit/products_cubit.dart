@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:fruits_hub/core/repos/products_repo/products_repo.dart';
 import 'package:meta/meta.dart';
 
-import '../../entities/add_product_input/ProductEntity.dart';
+import '../../entities/add_product_input/product_entity.dart';
 
 part 'products_state.dart';
 

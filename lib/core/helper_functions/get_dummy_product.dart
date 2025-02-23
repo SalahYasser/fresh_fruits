@@ -1,4 +1,4 @@
-import 'package:fruits_hub/core/entities/add_product_input/ProductEntity.dart';
+import 'package:fruits_hub/core/entities/add_product_input/product_entity.dart';
 
 ProductEntity getDummyProduct() {
   return ProductEntity(

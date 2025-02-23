@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_hub/core/entities/add_product_input/ProductEntity.dart';
+import 'package:fruits_hub/core/entities/add_product_input/product_entity.dart';
 import 'package:fruits_hub/core/widgets/fruit_item.dart';
 
 class BestSellingGridView extends StatelessWidget {
@@ -10,6 +10,7 @@ class BestSellingGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverGrid.builder(
+      itemCount: products.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         childAspectRatio: 163 / 214,
         crossAxisCount: 2,

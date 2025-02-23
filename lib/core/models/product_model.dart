@@ -1,6 +1,6 @@
 import 'package:fruits_hub/core/models/review_model.dart';
 
-import '../entities/add_product_input/ProductEntity.dart';
+import '../entities/add_product_input/product_entity.dart';
 import '../helper_functions/get_avg_rating.dart';
 
 class ProductModel {
@@ -47,9 +47,15 @@ class ProductModel {
       unitAmount: json['unitAmount'],
       isOrganic: json['isOrganic'],
       imageUrl: json['imageUrl'],
-      reviews: json['reviews'].map((e) => ReviewModel.fromJson(e)).toList(),
+      reviews: json['reviews'] != null
+          ? List<ReviewModel>.from(
+              json['reviews'].map((e) => ReviewModel.fromJson(e)))
+          : [],
       sellingCount: json['sellingCount'],
-      avgRating: getAvgRating(json['avgRating']),
+      avgRating: getAvgRating(json['reviews'] != null
+          ? List<ReviewModel>.from(
+              json['reviews'].map((e) => ReviewModel.fromJson(e)))
+          : []),
     );
   }
 
