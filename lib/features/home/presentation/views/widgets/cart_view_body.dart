@@ -33,7 +33,7 @@ class CartViewBody extends StatelessWidget {
             SliverToBoxAdapter(
               child: CustomDivider(),
             ),
-            CartItemsList(),
+            CartItemsList(cartItems: []),
           ],
         ),
         Positioned(
