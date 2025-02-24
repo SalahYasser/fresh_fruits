@@ -3,7 +3,8 @@ import 'package:fruits_hub/constants.dart';
 import 'package:fruits_hub/core/utils/app_text_styles.dart';
 import 'package:fruits_hub/core/widgets/notification_widget.dart';
 
-AppBar buildAppBar(BuildContext context, String title) {
+AppBar buildAppBar(BuildContext context, String title, bool showBackButton) {
+
   return AppBar(
     backgroundColor: Colors.white,
     actions: [
@@ -20,11 +21,14 @@ AppBar buildAppBar(BuildContext context, String title) {
       textAlign: TextAlign.center,
     ),
     centerTitle: true,
-    leading: GestureDetector(
-      onTap: () {
-        Navigator.pop(context);
-      },
-      child: Icon(Icons.arrow_back_ios_new),
+    leading: Visibility(
+      visible: showBackButton,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: Icon(Icons.arrow_back_ios_new),
+      ),
     ),
   );
 }
