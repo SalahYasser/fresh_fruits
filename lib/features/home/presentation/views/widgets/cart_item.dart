@@ -23,8 +23,8 @@ class CartItem extends StatelessWidget {
             height: 92,
             decoration: BoxDecoration(color: Color(0xFFF3F5F7)),
             child: CustomNetworkImage(
-                imageUrl:
-                    'https://i5.walmartimages.com/seo/Fresh-Seedless-Watermelon-Each_e2ec527d-fe7b-4309-9373-186de34557cf.1c562d1a69a2a8f4cb7b5de8f125fc76.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF'),
+              imageUrl: cartItemEntity.productEntity.imageUrl!,
+            ),
           ),
           SizedBox(width: 17),
           Expanded(
@@ -35,7 +35,7 @@ class CartItem extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      'بطيخ',
+                      cartItemEntity.productEntity.name,
                       style: TextStyles.bold13,
                     ),
                     const Spacer(),
@@ -46,7 +46,7 @@ class CartItem extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  '3 كم',
+                  '${cartItemEntity.calculateTotalWeight()} كم',
                   textAlign: TextAlign.right,
                   style: TextStyles.regular13.copyWith(
                     color: AppColors.secondaryColor,
@@ -57,7 +57,7 @@ class CartItem extends StatelessWidget {
                     CartItemActionButtons(),
                     const Spacer(),
                     Text(
-                      '60 جنيه',
+                      '${cartItemEntity.calculateTotalPrice()} جنيه',
                       style: TextStyles.bold16.copyWith(
                         color: Color(0xFFF4A91F),
                       ),

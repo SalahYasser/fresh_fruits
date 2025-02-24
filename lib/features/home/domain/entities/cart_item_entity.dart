@@ -8,4 +8,20 @@ class CartItemEntity {
     required this.productEntity,
     this.count = 0,
   });
+
+  num calculateTotalPrice() {
+    return productEntity.price * count;
+  }
+
+  num calculateTotalWeight() {
+    return productEntity.unitAmount * count;
+  }
+
+  countIncrement() {
+    count++;
+  }
+
+  countDecrement() {
+    count--;
+  }
 }
