@@ -78,8 +78,9 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                     formKey.currentState!.save();
                     context.read<SigninCubit>().signin(email, password);
                   } else {
+                    setState(() {
                     autovalidateMode = AutovalidateMode.always;
-                    setState(() {});
+                    });
                   }
                 },
                 text: 'تسجيل دخول',
