@@ -3,8 +3,8 @@ import 'package:fruits_hub/core/utils/app_images.dart';
 import 'package:fruits_hub/core/utils/app_text_styles.dart';
 import 'package:svg_flutter/svg.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key});
+class SearchTextField extends StatelessWidget {
+  const SearchTextField({super.key});
 
   @override
   Widget build(BuildContext context) {

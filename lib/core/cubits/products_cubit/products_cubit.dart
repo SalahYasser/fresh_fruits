@@ -11,8 +11,9 @@ class ProductsCubit extends Cubit<ProductsState> {
 
   final ProductsRepo productsRepo;
 
-  Future<void> getProducts() async {
+  int productLength = 0;
 
+  Future<void> getProducts() async {
     emit(ProductsLoading());
 
     var result = await productsRepo.getProducts();
@@ -25,15 +26,15 @@ class ProductsCubit extends Cubit<ProductsState> {
   }
 
   Future<void> getBestSellingProducts() async {
-
     emit(ProductsLoading());
 
     var result = await productsRepo.getBestSellingProducts();
     result.fold(
       (failure) => emit(ProductsFailure(failure.message)),
-      (products) => emit(
-        ProductsSuccess(products),
-      ),
+      (products) {
+        productLength = products.length;
+        emit(ProductsSuccess(products));
+      },
     );
   }
 }

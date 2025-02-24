@@ -1,31 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fruits_hub/core/cubits/products_cubit/products_cubit.dart';
-
-import '../../../../../constants.dart';
+import 'package:fruits_hub/constants.dart';
+import 'package:fruits_hub/features/home/presentation/views/widgets/products_view_header.dart';
+import '../../../../../core/cubits/products_cubit/products_cubit.dart';
 import '../../../../../core/widgets/search_text_field.dart';
 import 'best_selling_grid_view_bloc_builder.dart';
-import 'best_selling_header.dart';
 import 'custom_home_app_bar.dart';
-import 'featured_list.dart';
 
-class HomeViewBody extends StatefulWidget {
-  const HomeViewBody({super.key});
+class ProductsViewBody extends StatefulWidget {
+  const ProductsViewBody({super.key});
 
   @override
-  State<HomeViewBody> createState() => _HomeViewBodyState();
+  State<ProductsViewBody> createState() => _ProductsViewBodyState();
 }
 
-class _HomeViewBodyState extends State<HomeViewBody> {
+class _ProductsViewBodyState extends State<ProductsViewBody> {
   @override
   void initState() {
-    context.read<ProductsCubit>().getBestSellingProducts();
+    context.read<ProductsCubit>().getProducts();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    return Padding(
       padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
       child: CustomScrollView(
         slivers: [
@@ -37,9 +35,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 SizedBox(height: kTopPadding),
                 SearchTextField(),
                 SizedBox(height: kTopPadding),
-                FeaturedList(),
-                SizedBox(height: kTopPadding),
-                BestSellingHeader(),
+                ProductsViewHeader(
+                  productLength: context.read<ProductsCubit>().productLength,
+                ),
                 SizedBox(height: 8),
               ],
             ),
