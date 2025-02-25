@@ -14,7 +14,7 @@ class MainViewBodyBlocListener extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<CartCubit, CartState>(
       listener: (context, state) {
-       if (state is CartProductAdded){
+       if (state is CartItemAdded){
          buildBar(context, 'تم إضافة المنتج بنجاح');
        }
       },
