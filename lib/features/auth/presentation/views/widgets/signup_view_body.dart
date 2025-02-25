@@ -74,7 +74,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                           .createUserWithEmailAndPassword(
                               email, password, name);
                     } else {
-                      buildErrorBar(context, 'يرجى قبول الشروط والأحكام');
+                      buildBar(context, 'يرجى قبول الشروط والأحكام');
                     }
                   } else {
                     setState(() {
