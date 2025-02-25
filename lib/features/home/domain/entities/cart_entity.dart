@@ -26,4 +26,12 @@ class CartEntity {
       }
     } return CartItemEntity(productEntity: product, count: 1);
   }
+
+  double calculateTotalPrice() {
+    double totalPrice = 0;
+    for (var cartItem in cartItems) {
+      totalPrice += cartItem.calculateTotalPrice();
+    }
+    return totalPrice;
+  }
 }

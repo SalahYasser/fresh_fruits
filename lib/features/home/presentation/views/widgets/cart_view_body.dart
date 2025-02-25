@@ -50,7 +50,7 @@ class CartViewBody extends StatelessWidget {
           right: 16,
           bottom: MediaQuery.sizeOf(context).height * 0.05,
           child: CustomButton(
-            text: 'الدفع  120جنيه',
+            text: 'الدفع  ${context.watch<CartCubit>().cartEntity.calculateTotalPrice()} جنيه',
             onPressed: () {},
           ),
         ),
