@@ -43,8 +43,7 @@ class CartItem extends StatelessWidget {
                     const Spacer(),
                     GestureDetector(
                       onTap: () {
-                        context
-                            .read<CartCubit>().removeProduct(cartItemEntity);
+                        context.read<CartCubit>().removeProduct(cartItemEntity);
                       },
                       child: SvgPicture.asset(Assets.assetsImagesTrash),
                     ),
@@ -59,7 +58,7 @@ class CartItem extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    CartItemActionButtons(),
+                    CartItemActionButtons(cartItemEntity: cartItemEntity),
                     const Spacer(),
                     Text(
                       '${cartItemEntity.calculateTotalPrice()} جنيه',
