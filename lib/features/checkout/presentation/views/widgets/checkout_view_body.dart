@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../constants.dart';
+import 'checkout_steps.dart';
 import 'in_active_step_item.dart';
 
 class CheckoutViewBody extends StatelessWidget {
@@ -12,7 +13,7 @@ class CheckoutViewBody extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
       child: Column(
         children: [
-          InActiveStepItem(),
+          CheckoutSteps(),
         ],
       ),
     );

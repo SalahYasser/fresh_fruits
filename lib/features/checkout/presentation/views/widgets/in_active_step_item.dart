@@ -2,23 +2,27 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 
 class InActiveStepItem extends StatelessWidget {
-  const InActiveStepItem({super.key});
+  const InActiveStepItem({super.key, required this.text, required this.index});
+
+  final String text;
+  final String index;
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CircleAvatar(
           radius: 10,
           backgroundColor: Color(0xFFF2F3F3),
           child: Text(
-            '2',
+           index,
             style: TextStyles.semiBold13,
           ),
         ),
         const SizedBox(width: 4),
         Text(
-          'الشحن',
+          text,
           style: TextStyles.bold13.copyWith(
             color: Color(0xFFAAAAAA),
           ),
