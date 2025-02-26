@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_hub/features/checkout/presentation/views/widgets/active_step_item.dart';
-
-import 'in_active_step_item.dart';
+import 'package:fruits_hub/features/checkout/presentation/views/widgets/step_item.dart';
 
 class CheckoutSteps extends StatelessWidget {
   const CheckoutSteps({super.key});
@@ -13,7 +11,8 @@ class CheckoutSteps extends StatelessWidget {
         getSteps().length,
         (index) {
           return Expanded(
-            child: InActiveStepItem(
+            child: StepItem(
+              isActive: true,
               text: getSteps()[index],
               index: index.toString(),
             ),
