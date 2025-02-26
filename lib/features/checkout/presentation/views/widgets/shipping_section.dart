@@ -10,12 +10,14 @@ class ShippingSection extends StatelessWidget {
       children: [
         SizedBox(height: 33),
         ShippingItem(
+          isActive: true,
           title: 'الدفع عند الاستلام',
           subtitle: 'التسليم من المكان',
           price: '40',
         ),
         SizedBox(height: 16),
         ShippingItem(
+          isActive: false,
           title: 'الدفع اونلاين',
           subtitle: 'يرجي تحديد طريقه الدفع',
           price: '40',

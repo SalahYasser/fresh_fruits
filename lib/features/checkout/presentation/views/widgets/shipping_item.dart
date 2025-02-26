@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/utils/app_colors.dart';
 
 import '../../../../../core/utils/app_text_styles.dart';
+import 'active_shipping_item_dot.dart';
+import 'in_active_shipping_item_dot.dart';
 
 class ShippingItem extends StatelessWidget {
   const ShippingItem({
@@ -9,13 +11,16 @@ class ShippingItem extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.price,
+    required this.isActive,
   });
 
   final String title, subtitle, price;
+  final bool isActive;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 300),
       padding: const EdgeInsets.only(
         top: 16,
         left: 13,
@@ -27,21 +32,19 @@ class ShippingItem extends StatelessWidget {
         color: Color(0x33D9D9D9),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4),
+          side: BorderSide(
+            width: 1,
+            color: isActive ? AppColors.primaryColor : Colors.transparent,
+          ),
         ),
       ),
       child: IntrinsicHeight(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 18,
-              height: 18,
-              decoration: ShapeDecoration(
-                shape: OvalBorder(
-                  side: BorderSide(width: 1, color: Color(0xFF949D9E)),
-                ),
-              ),
-            ),
+            isActive
+                ? const ActiveShippingItemDot()
+                : const InActiveShippingItemDot(),
             SizedBox(width: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
