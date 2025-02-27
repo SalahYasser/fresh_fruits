@@ -15,6 +15,9 @@ class _ShippingSectionState extends State<ShippingSection> {
 
   @override
   Widget build(BuildContext context) {
+
+  var orderEntity = context.read<OrderEntity>();
+
     return Column(
       children: [
         SizedBox(height: 33),
@@ -22,11 +25,12 @@ class _ShippingSectionState extends State<ShippingSection> {
           onTap: () {
             selectedIndex = 0;
             setState(() {});
+            orderEntity.payWithCash = true;
           },
           isActive: selectedIndex == 0,
           title: 'الدفع عند الاستلام',
           subtitle: 'التسليم من المكان',
-          price: (context.read<OrderEntity>().cartEntity.calculateTotalPrice() +
+          price: (orderEntity.cartEntity.calculateTotalPrice() +
                   50)
               .toString(),
         ),
@@ -35,6 +39,7 @@ class _ShippingSectionState extends State<ShippingSection> {
           onTap: () {
             selectedIndex = 1;
             setState(() {});
+            orderEntity.payWithCash = false;
           },
           isActive: selectedIndex == 1,
           title: 'الدفع اونلاين',

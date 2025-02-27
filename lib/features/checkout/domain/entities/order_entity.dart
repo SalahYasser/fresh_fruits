@@ -4,8 +4,8 @@ import '../../../home/domain/entities/cart_entity.dart';
 
 class OrderEntity {
   final CartEntity cartEntity;
-  final bool? payWithCash;
-  final ShippingAddressEntity? shippingAddressEntity;
+  bool? payWithCash;
+  ShippingAddressEntity? shippingAddressEntity;
 
   OrderEntity(
     this.cartEntity, {
