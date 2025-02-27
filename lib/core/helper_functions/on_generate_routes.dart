@@ -5,14 +5,16 @@ import 'package:fruits_hub/features/best_selling_fruits/presentation/views/best_
 import 'package:fruits_hub/features/home/presentation/views/main_view.dart';
 import 'package:fruits_hub/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:fruits_hub/features/splash/presentation/views/splash_view.dart';
-
 import '../../features/checkout/presentation/views/checkout_view.dart';
+import '../../features/home/domain/entities/cart_item_entity.dart';
 
 Route<dynamic> onGenerateRoutes(RouteSettings settings) {
   switch (settings.name) {
 
     case CheckoutView.routeName:
-      return MaterialPageRoute(builder: (context) => const CheckoutView());
+      return MaterialPageRoute(builder: (context) => CheckoutView(
+          cartItems: settings.arguments as List<CartItemEntity>,
+      ));
 
     case BestSellingView.routeName:
       return MaterialPageRoute(builder: (context) => const BestSellingView());
