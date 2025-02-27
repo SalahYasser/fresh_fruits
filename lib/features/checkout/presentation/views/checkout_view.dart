@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/helper_functions/build_app_bar.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/checkout_view_body.dart';
-import 'package:fruits_hub/features/home/domain/entities/cart_item_entity.dart';
+import '../../../home/domain/entities/cart_entity.dart';
 
 class CheckoutView extends StatelessWidget {
-  const CheckoutView({super.key, required this.cartItems});
+  const CheckoutView({super.key, required this.cartEntity});
 
   static const routeName = 'checkout';
-  final List<CartItemEntity> cartItems;
+  final CartEntity cartEntity;
 
   @override
   Widget build(BuildContext context) {
