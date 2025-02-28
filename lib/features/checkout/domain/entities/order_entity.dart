@@ -5,11 +5,11 @@ import '../../../home/domain/entities/cart_entity.dart';
 class OrderEntity {
   final CartEntity cartEntity;
   bool? payWithCash;
-  ShippingAddressEntity? shippingAddressEntity = ShippingAddressEntity();
+  ShippingAddressEntity shippingAddressEntity;
 
   OrderEntity(
     this.cartEntity, {
     this.payWithCash,
-    this.shippingAddressEntity,
+    required this.shippingAddressEntity,
   });
 }

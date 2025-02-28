@@ -4,6 +4,7 @@ import 'package:fruits_hub/features/checkout/domain/entities/order_entity.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/checkout_view_body.dart';
 import 'package:provider/provider.dart';
 import '../../../home/domain/entities/cart_entity.dart';
+import '../../domain/entities/shipping_address_entity.dart';
 
 class CheckoutView extends StatelessWidget {
   const CheckoutView({super.key, required this.cartEntity});
@@ -16,7 +17,10 @@ class CheckoutView extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(context, title: 'الشحن'),
       body: Provider.value(
-        value: OrderEntity(cartEntity),
+        value: OrderEntity(
+          cartEntity,
+          shippingAddressEntity: ShippingAddressEntity(),
+        ),
         child: const CheckoutViewBody(),
       ),
     );
