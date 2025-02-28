@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/helper_functions/build_error_bar.dart';
@@ -16,7 +17,12 @@ class CheckoutViewBody extends StatefulWidget {
 }
 
 class _CheckoutViewBodyState extends State<CheckoutViewBody> {
+
   late PageController pageController;
+
+  ValueNotifier<AutovalidateMode> autovalidateMode = ValueNotifier(
+    AutovalidateMode.disabled,
+  );
 
   @override
   void initState() {
@@ -32,6 +38,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   @override
   dispose() {
     pageController.dispose();
+    autovalidateMode.dispose();
     super.dispose();
   }
 
@@ -54,19 +61,16 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
             child: CheckoutStepsPageView(
               formKey: formKey,
               pageController: pageController,
+              valueListenable: autovalidateMode,
             ),
           ),
           CustomButton(
             text: getNextButtonText(),
             onPressed: () {
-              if (context.read<OrderEntity>().payWithCash != null) {
-                pageController.animateToPage(
-                  currentIndexPage + 1,
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeIn,
-                );
+              if (currentIndexPage == 0) {
+                handleShippingSectionValidation(context);
               } else {
-                buildBar(context, 'قم بتحديد طريقة الدفع');
+                handleAddressValidation();
               }
             },
           ),
@@ -74,6 +78,18 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         ],
       ),
     );
+  }
+
+  void handleShippingSectionValidation(BuildContext context) {
+    if (context.read<OrderEntity>().payWithCash != null) {
+      pageController.animateToPage(
+        currentIndexPage + 1,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeIn,
+      );
+    } else {
+      buildBar(context, 'قم بتحديد طريقة الدفع');
+    }
   }
 
   String getNextButtonText() {
@@ -86,6 +102,20 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         return 'الدفع عبر PayPal';
       default:
         return 'التالي';
+    }
+  }
+
+  void handleAddressValidation() {
+    if (formKey.currentState!.validate()) {
+      formKey.currentState!.save();
+
+      pageController.animateToPage(
+        currentIndexPage + 1,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeIn,
+      );
+    } else {
+      autovalidateMode.value = AutovalidateMode.always;
     }
   }
 }
