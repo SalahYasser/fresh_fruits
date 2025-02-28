@@ -5,9 +5,14 @@ import '../../../../../constants.dart';
 import 'address_input_section.dart';
 
 class CheckoutStepsPageView extends StatelessWidget {
-  const CheckoutStepsPageView({super.key, required this.pageController});
+  const CheckoutStepsPageView({
+    super.key,
+    required this.pageController,
+    required this.formKey,
+  });
 
   final PageController pageController;
+  final GlobalKey<FormState> formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +28,12 @@ class CheckoutStepsPageView extends StatelessWidget {
       ),
     );
   }
+
   List<Widget> getPages() {
     return [
-      ShippingSection(),
-      AddressInputSection(),
-      PaymentSection(),
+      const ShippingSection(),
+      AddressInputSection(formKey: formKey),
+      const PaymentSection(),
     ];
   }
 }
