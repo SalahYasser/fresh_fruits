@@ -31,7 +31,7 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
             child: Column(
               children: [
                 SizedBox(height: kTopPadding),
-                buildAppBar(
+                buildAppBarWidget(
                   context,
                   title: 'المنتجات',
                   showBackButton: false,

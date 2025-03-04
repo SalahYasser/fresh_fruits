@@ -3,7 +3,7 @@ import 'package:fruits_hub/constants.dart';
 import 'package:fruits_hub/core/utils/app_text_styles.dart';
 import 'package:fruits_hub/core/widgets/notification_widget.dart';
 
-AppBar buildAppBar(
+AppBar buildAppBarWidget(
   context, {
   required String title,
   bool showBackButton = true,
