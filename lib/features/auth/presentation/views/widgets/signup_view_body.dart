@@ -35,7 +35,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
           autovalidateMode: autovalidateMode,
           child: Column(
             children: [
-              const SizedBox(height: 16),
+              const SizedBox(height: 24),
               CustomTextFormField(
                 onSaved: (value) {
                   name = value!;
@@ -72,7 +72,10 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                       context
                           .read<SignupCubit>()
                           .createUserWithEmailAndPassword(
-                              email, password, name);
+                            email,
+                            password,
+                            name,
+                          );
                     } else {
                       buildBar(context, 'يرجى قبول الشروط والأحكام');
                     }
