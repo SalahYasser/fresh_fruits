@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_hub/features/checkout/domain/entities/order_entity.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/payment_item.dart';
 
 import '../../../../../core/utils/app_text_styles.dart';
@@ -24,7 +26,7 @@ class OrderSummaryWidget extends StatelessWidget {
                   ),
                   Spacer(),
                   Text(
-                    '150 جنيه',
+                    '${context.read<OrderEntity>().cartEntity.calculateTotalPrice()} جنيه',
                     textAlign: TextAlign.right,
                     style: TextStyles.semiBold16,
                   ),
@@ -41,7 +43,7 @@ class OrderSummaryWidget extends StatelessWidget {
                   ),
                   Spacer(),
                   Text(
-                    '30جنية',
+                    '50 جنية',
                     textAlign: TextAlign.right,
                     style: TextStyles.semiBold13.copyWith(
                       color: Color(0xFF4E5556),
@@ -63,36 +65,11 @@ class OrderSummaryWidget extends StatelessWidget {
                   ),
                   Spacer(),
                   Text(
-                    '180 جنيه',
+                    '${context.read<OrderEntity>().cartEntity.calculateTotalPrice() + 50} جنيه',
                     textAlign: TextAlign.right,
                     style: TextStyles.bold16,
                   ),
                 ],
-              ),
-            ],
-          ),
-        ),
-        SizedBox(height: 16),
-        PaymentItem(
-          title: 'عنوان التوصيل',
-          child: Row(
-            children: [
-              Icon(Icons.location_on_outlined),
-              Text(
-                'شارع النيل، مبنى رقم ١٢٣',
-                textAlign: TextAlign.right,
-                style: TextStyles.regular16.copyWith(
-                  color: Color(0xFF4E5556),
-                ),
-              ),
-              Spacer(),
-              Icon(Icons.edit_note),
-              SizedBox(width: 4),
-              Text(
-                'تعديل',
-                style: TextStyles.semiBold13.copyWith(
-                  color: Color(0xFF949D9E),
-                ),
               ),
             ],
           ),
