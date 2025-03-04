@@ -23,7 +23,7 @@ class CheckoutView extends StatelessWidget {
       ),
       body: Provider.value(
         value: OrderEntity(
-          uID: getUser().uId,
+          uID: getUser()!.uId,
           cartEntity,
           shippingAddressEntity: ShippingAddressEntity(),
         ),
