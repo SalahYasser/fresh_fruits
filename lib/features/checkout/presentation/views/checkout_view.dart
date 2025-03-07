@@ -3,6 +3,7 @@
 // import 'package:fruits_hub/core/helper_functions/get_user.dart';
 // import 'package:fruits_hub/features/checkout/domain/entities/order_entity.dart';
 // import 'package:fruits_hub/features/checkout/presentation/manger/add_order_cubit/add_order_cubit.dart';
+// import 'package:fruits_hub/features/checkout/presentation/views/widgets/add_order_cubit_bloc_consumer.dart';
 // import 'package:fruits_hub/features/checkout/presentation/views/widgets/checkout_view_body.dart';
 // import 'package:provider/provider.dart';
 // import '../../../../core/repos/orders_repo/orders_repo.dart';
@@ -21,8 +22,8 @@
 //   Widget build(BuildContext context) {
 //     return BlocProvider(
 //       create: (context) => AddOrderCubit(
-//             getIt.get<OrdersRepo>(),
-//           ),
+//         getIt.get<OrdersRepo>(),
+//       ),
 //       child: Scaffold(
 //         appBar: buildAppBarWidget(
 //           context,
@@ -35,18 +36,23 @@
 //             cartEntity,
 //             shippingAddressEntity: ShippingAddressEntity(),
 //           ),
-//           child: const CheckoutViewBody(),
+//           child: const AddOrderCubitBlocConsumer(
+//             child: CheckoutViewBody(),
+//           ),
 //         ),
 //       ),
 //     );
 //   }
 // }
 
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/helper_functions/get_user.dart';
 import 'package:fruits_hub/features/checkout/domain/entities/order_entity.dart';
 import 'package:fruits_hub/features/checkout/presentation/manger/add_order_cubit/add_order_cubit.dart';
+import 'package:fruits_hub/features/checkout/presentation/views/widgets/add_order_cubit_bloc_consumer.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/checkout_view_body.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/repos/orders_repo/orders_repo.dart';
@@ -73,7 +79,7 @@ class CheckoutView extends StatelessWidget {
           title: 'الشحن',
           showNotification: false,
         ),
-        body: Center(
+        body: const Center(
           child: Text('No user data found. Please log in.'),
         ),
       );
@@ -81,9 +87,10 @@ class CheckoutView extends StatelessWidget {
 
     // Proceed to create the OrderEntity if user is not null
     return BlocProvider(
-      create: (context) => AddOrderCubit(
-        getIt.get<OrdersRepo>(),
-      ),
+      create: (context) =>
+          AddOrderCubit(
+            getIt.get<OrdersRepo>(),
+          ),
       child: Scaffold(
         appBar: buildAppBarWidget(
           context,
@@ -96,7 +103,9 @@ class CheckoutView extends StatelessWidget {
             cartEntity,
             shippingAddressEntity: ShippingAddressEntity(),
           ),
-          child: const CheckoutViewBody(),
+          child: const AddOrderCubitBlocConsumer(
+            child: CheckoutViewBody(),
+          ),
         ),
       ),
     );

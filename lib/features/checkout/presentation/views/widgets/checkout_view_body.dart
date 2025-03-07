@@ -1,11 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_hub/constants.dart';
 import 'package:fruits_hub/core/helper_functions/build_error_bar.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/features/checkout/domain/entities/order_entity.dart';
-
-import '../../../../../constants.dart';
+import 'package:fruits_hub/features/checkout/presentation/manger/add_order_cubit/add_order_cubit.dart';
 import 'checkout_steps.dart';
 import 'checkout_steps_page_view.dart';
 
@@ -17,10 +16,9 @@ class CheckoutViewBody extends StatefulWidget {
 }
 
 class _CheckoutViewBodyState extends State<CheckoutViewBody> {
-
   late PageController pageController;
 
-  ValueNotifier<AutovalidateMode> autovalidateMode = ValueNotifier(
+  ValueNotifier<AutovalidateMode> valueNotifier = ValueNotifier(
     AutovalidateMode.disabled,
   );
 
@@ -29,7 +27,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     pageController = PageController();
     pageController.addListener(() {
       setState(() {
-        currentIndexPage = pageController.page!.toInt();
+        currentPageIndex = pageController.page!.toInt();
       });
     });
     super.initState();
@@ -38,11 +36,11 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   @override
   dispose() {
     pageController.dispose();
-    autovalidateMode.dispose();
+    valueNotifier.dispose();
     super.dispose();
   }
 
-  int currentIndexPage = 0;
+  int currentPageIndex = 0;
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -55,24 +53,28 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
           const SizedBox(height: 20),
           CheckoutSteps(
             pageController: pageController,
-            currentIndexPage: currentIndexPage,
+            currentIndexPage: currentPageIndex,
           ),
           Expanded(
             child: CheckoutStepsPageView(
               formKey: formKey,
               pageController: pageController,
-              valueListenable: autovalidateMode,
+              valueListenable: valueNotifier,
             ),
           ),
           CustomButton(
-            text: getNextButtonText(),
             onPressed: () {
-              if (currentIndexPage == 0) {
+              if (currentPageIndex == 0) {
                 handleShippingSectionValidation(context);
-              } else {
+              }
+              if (currentPageIndex == 1) {
                 handleAddressValidation();
+              } else {
+                var orderEntity = context.read<OrderEntity>();
+                context.read<AddOrderCubit>().addOrder(order: orderEntity);
               }
             },
+            text: getNextButtonText(currentPageIndex),
           ),
           SizedBox(height: 32),
         ],
@@ -83,7 +85,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   void handleShippingSectionValidation(BuildContext context) {
     if (context.read<OrderEntity>().payWithCash != null) {
       pageController.animateToPage(
-        currentIndexPage + 1,
+        currentPageIndex + 1,
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeIn,
       );
@@ -92,8 +94,8 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     }
   }
 
-  String getNextButtonText() {
-    switch (currentIndexPage) {
+  String getNextButtonText(int currentPageIndex) {
+    switch (currentPageIndex) {
       case 0:
         return 'التالي';
       case 1:
@@ -110,12 +112,12 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
       formKey.currentState!.save();
 
       pageController.animateToPage(
-        currentIndexPage + 1,
+        currentPageIndex + 1,
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeIn,
       );
     } else {
-      autovalidateMode.value = AutovalidateMode.always;
+      valueNotifier.value = AutovalidateMode.always;
     }
   }
 }
