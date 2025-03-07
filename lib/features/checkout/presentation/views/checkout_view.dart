@@ -1,8 +1,12 @@
 // import 'package:flutter/material.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:fruits_hub/core/helper_functions/get_user.dart';
 // import 'package:fruits_hub/features/checkout/domain/entities/order_entity.dart';
+// import 'package:fruits_hub/features/checkout/presentation/manger/add_order_cubit/add_order_cubit.dart';
 // import 'package:fruits_hub/features/checkout/presentation/views/widgets/checkout_view_body.dart';
 // import 'package:provider/provider.dart';
+// import '../../../../core/repos/orders_repo/orders_repo.dart';
+// import '../../../../core/services/get_it_service.dart';
 // import '../../../../core/widgets/build_app_bar_widget.dart';
 // import '../../../home/domain/entities/cart_entity.dart';
 // import '../../domain/entities/shipping_address_entity.dart';
@@ -15,33 +19,38 @@
 //
 //   @override
 //   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: buildAppBarWidget(
-//         context,
-//         title: 'الشحن',
-//         showNotification: false,
-//       ),
-//       body: Provider.value(
-//         value: OrderEntity(
-//           uID: getUser()!.uId,
-//           cartEntity,
-//           shippingAddressEntity: ShippingAddressEntity(),
+//     return BlocProvider(
+//       create: (context) => AddOrderCubit(
+//             getIt.get<OrdersRepo>(),
+//           ),
+//       child: Scaffold(
+//         appBar: buildAppBarWidget(
+//           context,
+//           title: 'الشحن',
+//           showNotification: false,
 //         ),
-//         child: const CheckoutViewBody(),
+//         body: Provider.value(
+//           value: OrderEntity(
+//             uID: getUser()!.uId,
+//             cartEntity,
+//             shippingAddressEntity: ShippingAddressEntity(),
+//           ),
+//           child: const CheckoutViewBody(),
+//         ),
 //       ),
 //     );
 //   }
 // }
 
-
-
-
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/helper_functions/get_user.dart';
 import 'package:fruits_hub/features/checkout/domain/entities/order_entity.dart';
+import 'package:fruits_hub/features/checkout/presentation/manger/add_order_cubit/add_order_cubit.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/checkout_view_body.dart';
 import 'package:provider/provider.dart';
+import '../../../../core/repos/orders_repo/orders_repo.dart';
+import '../../../../core/services/get_it_service.dart';
 import '../../../../core/widgets/build_app_bar_widget.dart';
 import '../../../home/domain/entities/cart_entity.dart';
 import '../../domain/entities/shipping_address_entity.dart';
@@ -71,19 +80,24 @@ class CheckoutView extends StatelessWidget {
     }
 
     // Proceed to create the OrderEntity if user is not null
-    return Scaffold(
-      appBar: buildAppBarWidget(
-        context,
-        title: 'الشحن',
-        showNotification: false,
+    return BlocProvider(
+      create: (context) => AddOrderCubit(
+        getIt.get<OrdersRepo>(),
       ),
-      body: Provider.value(
-        value: OrderEntity(
-          uID: user.uId, // Safely access uId
-          cartEntity,
-          shippingAddressEntity: ShippingAddressEntity(),
+      child: Scaffold(
+        appBar: buildAppBarWidget(
+          context,
+          title: 'الشحن',
+          showNotification: false,
         ),
-        child: const CheckoutViewBody(),
+        body: Provider.value(
+          value: OrderEntity(
+            uID: user.uId, // Safely access uId
+            cartEntity,
+            shippingAddressEntity: ShippingAddressEntity(),
+          ),
+          child: const CheckoutViewBody(),
+        ),
       ),
     );
   }

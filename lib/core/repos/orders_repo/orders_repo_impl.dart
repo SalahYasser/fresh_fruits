@@ -9,9 +9,10 @@ import '../../utils/backend_endpoint.dart';
 import 'orders_repo.dart';
 
 class OrdersRepoImpl implements OrdersRepo {
+
   final DataBaseService dataBaseService;
 
-  OrdersRepoImpl({required this.dataBaseService});
+  OrdersRepoImpl(this.dataBaseService);
 
   @override
   Future<Either<Failure, void>> addOrder({required OrderEntity order}) async {
