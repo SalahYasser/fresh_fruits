@@ -5,14 +5,14 @@ import 'package:fruits_hub/core/services/shared_preferences_singleton.dart';
 import 'package:fruits_hub/features/auth/data/models/user_model.dart';
 import 'package:fruits_hub/features/auth/domain/entities/user_entity.dart';
 
-UserEntity getUser() {
-
-  var jsonString = Prefs.getString(kUserData);
-
-  var userEntity = UserModel.fromJson(jsonDecode(jsonString));
-
-  return userEntity;
-}
+// UserEntity getUser() {
+//
+//   var jsonString = Prefs.getString(kUserData);
+//
+//   var userEntity = UserModel.fromJson(jsonDecode(jsonString));
+//
+//   return userEntity;
+// }
 
 // UserEntity? getUser() {
 //   // Return nullable UserEntity
@@ -33,3 +33,21 @@ UserEntity getUser() {
 //   }
 //   return null; // Return null if no data is found
 // }
+
+UserEntity? getUser() {
+  var jsonString = Prefs.getString(kUserData);
+  print('JSON String: $jsonString'); // Debugging log
+
+  if (jsonString == null || jsonString.isEmpty) {
+    print('No user data found.');
+    return null; // Handle the absence of data
+  }
+
+  try {
+    var userEntity = UserModel.fromJson(jsonDecode(jsonString));
+    return userEntity;
+  } catch (e) {
+    print('Error decoding JSON: $e');
+    return null; // Handle JSON decoding error
+  }
+}
