@@ -47,3 +47,6 @@ app.*.map.json
 android/app/src/main/res/values/strings.xml
 ios/Runner/GoogleService-Info.plist
 ios/Runner/GoogleService-Info 2.plist
+
+
+lib/core/utils/app_keys.dart
