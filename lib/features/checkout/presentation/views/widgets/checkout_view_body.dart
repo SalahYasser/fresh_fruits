@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:fruits_hub/constants.dart';
 import 'package:fruits_hub/core/helper_functions/build_error_bar.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/features/checkout/domain/entities/order_entity.dart';
-import 'package:fruits_hub/features/checkout/presentation/manger/add_order_cubit/add_order_cubit.dart';
 import 'checkout_steps.dart';
 import 'checkout_steps_page_view.dart';
 
@@ -70,8 +70,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
               if (currentPageIndex == 1) {
                 handleAddressValidation();
               } else {
-                var orderEntity = context.read<OrderEntity>();
-                context.read<AddOrderCubit>().addOrder(order: orderEntity);
+                processPayment(context);
               }
             },
             text: getNextButtonText(currentPageIndex),
@@ -119,5 +118,60 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     } else {
       valueNotifier.value = AutovalidateMode.always;
     }
+  }
+
+  void processPayment(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (BuildContext context) => PaypalCheckoutView(
+        sandboxMode: true,
+        clientId: "",
+        secretKey: "",
+        transactions: const [
+          {
+            "amount": {
+              "total": '70',
+              "currency": "USD",
+              "details": {
+                "subtotal": '70',
+                "shipping": '0',
+                "shipping_discount": 0
+              }
+            },
+            "description": "The payment transaction description.",
+            // "payment_options": {
+            //   "allowed_payment_method":
+            //       "INSTANT_FUNDING_SOURCE"
+            // },
+            "item_list": {
+              "items": [
+                {
+                  "name": "Apple",
+                  "quantity": 4,
+                  "price": '5',
+                  "currency": "USD"
+                },
+                {
+                  "name": "Pineapple",
+                  "quantity": 5,
+                  "price": '10',
+                  "currency": "USD"
+                }
+              ],
+            }
+          }
+        ],
+        note: "Contact us for any questions on your order.",
+        onSuccess: (Map params) async {
+          print("onSuccess: $params");
+        },
+        onError: (error) {
+          print("onError: $error");
+          Navigator.pop(context);
+        },
+        onCancel: () {
+          print('cancelled:');
+        },
+      ),
+    ));
   }
 }
