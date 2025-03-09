@@ -1,17 +1,13 @@
-class Item {
+import 'package:fruits_hub/core/helper_functions/get_currency.dart';
+import 'package:fruits_hub/features/home/domain/entities/cart_item_entity.dart';
+
+class ItemEntity {
   String? name;
   int? quantity;
   String? price;
   String? currency;
 
-  Item({this.name, this.quantity, this.price, this.currency});
-
-  factory Item.fromJson(Map<String, dynamic> json) => Item(
-        name: json['name'] as String?,
-        quantity: json['quantity'] as int?,
-        price: json['price'] as String?,
-        currency: json['currency'] as String?,
-      );
+  ItemEntity({this.name, this.quantity, this.price, this.currency});
 
   Map<String, dynamic> toJson() => {
         'name': name,
@@ -19,4 +15,13 @@ class Item {
         'price': price,
         'currency': currency,
       };
+
+  factory ItemEntity.fromEntity(CartItemEntity itemEntity) {
+    return ItemEntity(
+      name: itemEntity.productEntity.name,
+      quantity: itemEntity.quantity,
+      price: itemEntity.productEntity.price.toString(),
+      currency: getCurrency(),
+    );
+  }
 }
