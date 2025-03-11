@@ -57,7 +57,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
           const SizedBox(height: 20),
           CheckoutSteps(
             onTap: (index) {
-              if(currentPageIndex == 0) {
+              if (currentPageIndex == 0) {
                 pageController.animateToPage(
                   index,
                   duration: const Duration(milliseconds: 300),
@@ -77,18 +77,9 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
               } else {
                 handleAddressValidation();
               }
-              if (context.read<OrderEntity>().payWithCash != null) {
-                pageController.animateToPage(
-                  index,
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeIn,
-                );
-              } else {
-                buildBar(context, 'قم بتحديد طريقة الدفع');
-              }
             },
             pageController: pageController,
-            currentIndexPage: currentPageIndex,
+            currentPageIndex: currentPageIndex,
           ),
           Expanded(
             child: CheckoutStepsPageView(
@@ -101,8 +92,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
             onPressed: () {
               if (currentPageIndex == 0) {
                 handleShippingSectionValidation(context);
-              }
-              if (currentPageIndex == 1) {
+              } else if (currentPageIndex == 1) {
                 handleAddressValidation();
               } else {
                 processPayment(context);
@@ -121,7 +111,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
       pageController.animateToPage(
         currentPageIndex + 1,
         duration: const Duration(milliseconds: 300),
-        curve: Curves.easeIn,
+        curve: Curves.bounceIn,
       );
     } else {
       buildBar(context, 'قم بتحديد طريقة الدفع');
@@ -148,7 +138,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
       pageController.animateToPage(
         currentPageIndex + 1,
         duration: const Duration(milliseconds: 300),
-        curve: Curves.easeIn,
+        curve: Curves.bounceIn,
       );
     } else {
       valueNotifier.value = AutovalidateMode.always;
@@ -156,13 +146,13 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   }
 
   void processPayment(BuildContext context) {
+
     var orderEntity = context.read<OrderEntity>();
+
     PaypalPaymentEntity paypalPaymentEntity =
-        PaypalPaymentEntity.fromEntity(orderEntity);
+    PaypalPaymentEntity.fromEntity(orderEntity);
 
     var addOrderCubit = context.read<AddOrderCubit>();
-
-    log(paypalPaymentEntity.toJson().toString());
 
     Navigator.of(context).push(MaterialPageRoute(
       builder: (BuildContext context) => PaypalCheckoutView(
@@ -180,7 +170,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         onError: (error) {
           Navigator.pop(context);
           log(error.toString());
-          buildBar(context, 'حدث خطأ ما');
+          buildBar(context, 'حدث خطأ في عملية الدفع');
         },
         onCancel: () {
           print('cancelled:');

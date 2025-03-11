@@ -4,12 +4,12 @@ import 'package:fruits_hub/features/checkout/presentation/views/widgets/step_ite
 class CheckoutSteps extends StatelessWidget {
   const CheckoutSteps({
     super.key,
-    required this.currentIndexPage,
+    required this.currentPageIndex,
     required this.pageController,
     required this.onTap,
   });
 
-  final int currentIndexPage;
+  final int currentPageIndex;
   final PageController pageController;
   final ValueChanged<int> onTap;
 
@@ -25,7 +25,7 @@ class CheckoutSteps extends StatelessWidget {
                 onTap(index);
               },
               child: StepItem(
-                isActive: index <= currentIndexPage,
+                isActive: index <= currentPageIndex,
                 text: getSteps()[index],
                 index: (index + 1).toString(),
               ),
