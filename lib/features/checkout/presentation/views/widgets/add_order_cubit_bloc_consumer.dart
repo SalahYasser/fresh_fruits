@@ -12,7 +12,7 @@ class AddOrderCubitBlocConsumer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer(
+    return BlocConsumer<AddOrderCubit, AddOrderState>(
       listener: (context, state) {
         if (state is AddOrderSuccess) {
           buildBar(context, 'تم إضافة الطلب بنجاح');

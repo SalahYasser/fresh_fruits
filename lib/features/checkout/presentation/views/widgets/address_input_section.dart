@@ -22,61 +22,61 @@ class AddressInputSection extends StatelessWidget {
           autovalidateMode: value,
           child: Column(
             children: [
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               CustomTextFormField(
                 onSaved: (value) {
-                  context.read<OrderEntity>().shippingAddressEntity!.name =
+                  context.read<OrderEntity>().shippingAddressEntity.name =
                       value!;
                 },
                 textInputType: TextInputType.text,
                 hintText: 'الاسم كامل',
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 16),
               CustomTextFormField(
                 onSaved: (value) {
-                  context.read<OrderEntity>().shippingAddressEntity!.email =
+                  context.read<OrderEntity>().shippingAddressEntity.email =
                       value!;
                 },
-                textInputType: TextInputType.emailAddress,
+                textInputType: TextInputType.text,
                 hintText: 'البريد الإلكتروني',
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 16),
               CustomTextFormField(
                 onSaved: (value) {
-                  context.read<OrderEntity>().shippingAddressEntity!.address =
+                  context.read<OrderEntity>().shippingAddressEntity.address =
                       value!;
                 },
                 textInputType: TextInputType.text,
                 hintText: 'العنوان',
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 16),
               CustomTextFormField(
                 onSaved: (value) {
-                  context.read<OrderEntity>().shippingAddressEntity!.city =
+                  context.read<OrderEntity>().shippingAddressEntity.city =
                       value!;
                 },
                 textInputType: TextInputType.text,
                 hintText: 'المدينه',
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 16),
               CustomTextFormField(
                 onSaved: (value) {
-                  context.read<OrderEntity>().shippingAddressEntity!.floor =
+                  context.read<OrderEntity>().shippingAddressEntity.floor =
                       value!;
                 },
-                textInputType: TextInputType.number,
+                textInputType: TextInputType.text,
                 hintText: 'رقم الطابق , رقم الشقه ..',
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 16),
               CustomTextFormField(
                 onSaved: (value) {
-                  context.read<OrderEntity>().shippingAddressEntity!.phone =
+                  context.read<OrderEntity>().shippingAddressEntity.phone =
                       value!;
                 },
                 textInputType: TextInputType.number,
-                hintText: 'رقم الجوال',
+                hintText: 'رقم الهاتف',
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 16),
             ],
           ),
         ),

@@ -14,7 +14,6 @@ import 'package:fruits_hub/features/auth/data/models/user_model.dart';
 import 'package:fruits_hub/features/auth/domain/entities/user_entity.dart';
 import 'package:fruits_hub/features/auth/domain/repos/auth_repo.dart';
 
-
 class AuthRepoImpl extends AuthRepo {
   final FirebaseAuthService firebaseAuthService;
   final DataBaseService dataBaseService;
@@ -166,8 +165,10 @@ class AuthRepoImpl extends AuthRepo {
   @override
   Future addUserData({required UserEntity user}) async {
     await dataBaseService.addData(
-        path: BackendEndpoint.addUserData,
-        data: UserModel.fromEntity(user).toMap());
+      path: BackendEndpoint.addUserData,
+      data: UserModel.fromEntity(user).toMap(),
+      documentId: user.uId,
+    );
   }
 
   @override
