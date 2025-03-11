@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
@@ -127,6 +129,8 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     PaypalPaymentEntity paypalPaymentEntity =
         PaypalPaymentEntity.fromEntity(orderEntity);
 
+    log(paypalPaymentEntity.toJson().toString());
+
     Navigator.of(context).push(MaterialPageRoute(
       builder: (BuildContext context) => PaypalCheckoutView(
         sandboxMode: true,
@@ -137,11 +141,13 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         ],
         note: "Contact us for any questions on your order.",
         onSuccess: (Map params) async {
-          print("onSuccess: $params");
+          Navigator.pop(context);
+          buildBar(context, 'تمت الدفع بنجاح');
         },
         onError: (error) {
-          print("onError: $error");
           Navigator.pop(context);
+          log(error.toString());
+          buildBar(context, 'حدث خطأ ما');
         },
         onCancel: () {
           print('cancelled:');
