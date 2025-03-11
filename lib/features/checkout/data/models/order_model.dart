@@ -37,6 +37,7 @@ class OrderModel {
     return {
       'totalPrice': totalPrice,
       'uId': uId,
+      'status': 'Pending',
       'shippingAddressModel': shippingAddressModel,
       'orderProducts': orderProducts,
       'paymentMethod': paymentMethod,
