@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/payment_item.dart';
@@ -12,6 +14,9 @@ class ShippingAddressWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    log(context.read<OrderEntity>().toString());
+
     return PaymentItem(
       title: 'عنوان التوصيل',
       child: Row(

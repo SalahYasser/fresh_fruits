@@ -12,11 +12,29 @@
 // import '../../../home/domain/entities/cart_entity.dart';
 // import '../../domain/entities/shipping_address_entity.dart';
 //
-// class CheckoutView extends StatelessWidget {
+// class CheckoutView extends StatefulWidget {
 //   const CheckoutView({super.key, required this.cartEntity});
 //
 //   static const routeName = 'checkout';
 //   final CartEntity cartEntity;
+//
+//   @override
+//   State<CheckoutView> createState() => _CheckoutViewState();
+// }
+//
+// class _CheckoutViewState extends State<CheckoutView> {
+//
+//   late OrderEntity orderEntity;
+//
+//   @override
+//   void initState() {
+//     orderEntity = OrderEntity(
+//       uID: getUser()!.uId,
+//       widget.cartEntity,
+//       shippingAddressEntity: ShippingAddressEntity(),
+//     );
+//     super.initState();
+//   }
 //
 //   @override
 //   Widget build(BuildContext context) {
@@ -31,11 +49,7 @@
 //           showNotification: false,
 //         ),
 //         body: Provider.value(
-//           value: OrderEntity(
-//             uID: getUser()!.uId,
-//             cartEntity,
-//             shippingAddressEntity: ShippingAddressEntity(),
-//           ),
+//           value: orderEntity,
 //           child: const AddOrderCubitBlocConsumer(
 //             child: CheckoutViewBody(),
 //           ),
@@ -61,15 +75,44 @@ import '../../../../core/widgets/build_app_bar_widget.dart';
 import '../../../home/domain/entities/cart_entity.dart';
 import '../../domain/entities/shipping_address_entity.dart';
 
-class CheckoutView extends StatelessWidget {
+class CheckoutView extends StatefulWidget {
   const CheckoutView({super.key, required this.cartEntity});
 
   static const routeName = 'checkout';
   final CartEntity cartEntity;
 
   @override
-  Widget build(BuildContext context) {
+  State<CheckoutView> createState() => _CheckoutViewState();
+}
+
+class _CheckoutViewState extends State<CheckoutView> {
+  late OrderEntity orderEntity;
+
+  @override
+  void initState() {
+    super.initState();
     final user = getUser(); // Retrieve the user
+
+    // Check if user is null
+    if (user == null) {
+      orderEntity = OrderEntity(
+        uID: '', // Provide a default value or handle accordingly
+        widget.cartEntity,
+        shippingAddressEntity: ShippingAddressEntity(),
+      );
+    } else {
+      // Initialize orderEntity safely if user is not null
+      orderEntity = OrderEntity(
+        uID: user.uId,
+        widget.cartEntity,
+        shippingAddressEntity: ShippingAddressEntity(),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final user = getUser(); // Retrieve the user again if needed
 
     // Check if user is null
     if (user == null) {
@@ -85,12 +128,8 @@ class CheckoutView extends StatelessWidget {
       );
     }
 
-    // Proceed to create the OrderEntity if user is not null
     return BlocProvider(
-      create: (context) =>
-          AddOrderCubit(
-            getIt.get<OrdersRepo>(),
-          ),
+      create: (context) => AddOrderCubit(getIt.get<OrdersRepo>()),
       child: Scaffold(
         appBar: buildAppBarWidget(
           context,
@@ -98,11 +137,7 @@ class CheckoutView extends StatelessWidget {
           showNotification: false,
         ),
         body: Provider.value(
-          value: OrderEntity(
-            uID: user.uId, // Safely access uId
-            cartEntity,
-            shippingAddressEntity: ShippingAddressEntity(),
-          ),
+          value: orderEntity,
           child: const AddOrderCubitBlocConsumer(
             child: CheckoutViewBody(),
           ),
