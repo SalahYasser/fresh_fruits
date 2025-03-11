@@ -1,15 +1,14 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:fruits_hub/constants.dart';
 import 'package:fruits_hub/core/helper_functions/build_error_bar.dart';
+import 'package:fruits_hub/core/utils/app_keys.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/features/checkout/domain/entities/order_entity.dart';
 import 'package:fruits_hub/features/checkout/domain/entities/paypal_payment_entity/paypal_payment_entity.dart';
 import 'package:fruits_hub/features/checkout/presentation/manger/add_order_cubit/add_order_cubit.dart';
-import '../../../../../core/utils/app_keys.dart';
 import 'checkout_steps.dart';
 import 'checkout_steps_page_view.dart';
 
@@ -57,6 +56,37 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         children: [
           const SizedBox(height: 20),
           CheckoutSteps(
+            onTap: (index) {
+              if(currentPageIndex == 0) {
+                pageController.animateToPage(
+                  index,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeIn,
+                );
+              } else if (index == 1) {
+                var orderEntity = context.read<OrderEntity>();
+                if (orderEntity.payWithCash != null) {
+                  pageController.animateToPage(
+                    index,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeIn,
+                  );
+                } else {
+                  buildBar(context, 'قم بتحديد طريقة الدفع');
+                }
+              } else {
+                handleAddressValidation();
+              }
+              if (context.read<OrderEntity>().payWithCash != null) {
+                pageController.animateToPage(
+                  index,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeIn,
+                );
+              } else {
+                buildBar(context, 'قم بتحديد طريقة الدفع');
+              }
+            },
             pageController: pageController,
             currentIndexPage: currentPageIndex,
           ),
