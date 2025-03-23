@@ -15,7 +15,7 @@ class ShippingAddressWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    log(context.read<OrderEntity>().toString());
+    log(context.read<OrderInputEntity>().toString());
 
     return PaymentItem(
       title: 'عنوان التوصيل',
@@ -23,7 +23,7 @@ class ShippingAddressWidget extends StatelessWidget {
         children: [
           Icon(Icons.location_on_outlined),
           Text(
-            '${context.read<OrderEntity>().shippingAddressEntity}',
+            '${context.read<OrderInputEntity>().shippingAddressEntity}',
             textAlign: TextAlign.right,
             style: TextStyles.regular16.copyWith(
               color: Color(0xFF4E5556),

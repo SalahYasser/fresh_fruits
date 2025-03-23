@@ -25,7 +25,7 @@ class AddressInputSection extends StatelessWidget {
               const SizedBox(height: 24),
               CustomTextFormField(
                 onSaved: (value) {
-                  context.read<OrderEntity>().shippingAddressEntity.name =
+                  context.read<OrderInputEntity>().shippingAddressEntity.name =
                       value!;
                 },
                 textInputType: TextInputType.text,
@@ -34,7 +34,7 @@ class AddressInputSection extends StatelessWidget {
               const SizedBox(height: 16),
               CustomTextFormField(
                 onSaved: (value) {
-                  context.read<OrderEntity>().shippingAddressEntity.email =
+                  context.read<OrderInputEntity>().shippingAddressEntity.email =
                       value!;
                 },
                 textInputType: TextInputType.text,
@@ -43,7 +43,7 @@ class AddressInputSection extends StatelessWidget {
               const SizedBox(height: 16),
               CustomTextFormField(
                 onSaved: (value) {
-                  context.read<OrderEntity>().shippingAddressEntity.address =
+                  context.read<OrderInputEntity>().shippingAddressEntity.address =
                       value!;
                 },
                 textInputType: TextInputType.text,
@@ -52,7 +52,7 @@ class AddressInputSection extends StatelessWidget {
               const SizedBox(height: 16),
               CustomTextFormField(
                 onSaved: (value) {
-                  context.read<OrderEntity>().shippingAddressEntity.city =
+                  context.read<OrderInputEntity>().shippingAddressEntity.city =
                       value!;
                 },
                 textInputType: TextInputType.text,
@@ -61,7 +61,7 @@ class AddressInputSection extends StatelessWidget {
               const SizedBox(height: 16),
               CustomTextFormField(
                 onSaved: (value) {
-                  context.read<OrderEntity>().shippingAddressEntity.floor =
+                  context.read<OrderInputEntity>().shippingAddressEntity.floor =
                       value!;
                 },
                 textInputType: TextInputType.text,
@@ -70,7 +70,7 @@ class AddressInputSection extends StatelessWidget {
               const SizedBox(height: 16),
               CustomTextFormField(
                 onSaved: (value) {
-                  context.read<OrderEntity>().shippingAddressEntity.phone =
+                  context.read<OrderInputEntity>().shippingAddressEntity.phone =
                       value!;
                 },
                 textInputType: TextInputType.number,

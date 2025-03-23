@@ -2,13 +2,13 @@ import 'package:fruits_hub/features/checkout/domain/entities/shipping_address_en
 
 import '../../../home/domain/entities/cart_entity.dart';
 
-class OrderEntity {
+class OrderInputEntity {
   final String uID;
   final CartEntity cartEntity;
   bool? payWithCash;
   ShippingAddressEntity shippingAddressEntity;
 
-  OrderEntity(
+  OrderInputEntity(
     this.cartEntity, {
     required this.uID,
     this.payWithCash,
