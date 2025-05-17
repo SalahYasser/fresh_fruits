@@ -38,7 +38,7 @@ class OrdersRepoImpl implements OrdersRepo {
       var orderModel = OrderModel.fromEntity(order);
       await dataBaseService.addData(
         path: BackendEndpoint.addOrder,
-        documentId: orderModel.uId,
+        // documentId: orderModel.uId, //TODO : documentId send only one edit document
         data: orderModel.toJson(),
       );
       return const Right(null);
