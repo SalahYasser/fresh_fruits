@@ -18,7 +18,7 @@ class OrdersRepoImpl implements OrdersRepo {
       var orderModel = OrderModel.fromEntity(order);
       await dataBaseService.addData(
         path: BackendEndpoint.addOrder,
-        documentId: orderModel.uId,
+        documentId: orderModel.orderId,
         data: orderModel.toJson(),
       );
       return const Right(null);
