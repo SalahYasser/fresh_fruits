@@ -69,7 +69,8 @@ It can easily switch backends (e.g., Supabase ➝ API ➝ Firebase).
 *<img width="899" height="637" alt="image" src="https://github.com/user-attachments/assets/cfb60d00-261b-422c-bcd4-3dab53220694" />*
 *<img width="899" height="637" alt="image" src="https://github.com/user-attachments/assets/76e3941c-82f7-45a8-83c6-62e326b780ed" />*
 *<img width="899" height="637" alt="image" src="https://github.com/user-attachments/assets/292fcb46-ba7f-4d64-9575-824a00f89b46" />*
-*<img width="338" height="368" alt="image" src="https://github.com/user-attachments/assets/b1b2f552-9e0a-475a-8061-a7334db05055" /> <img width="520" height="368" alt="image" src="https://github.com/user-attachments/assets/ed85c4cd-52f2-4c3f-89ec-6604b5468b45" />*
+*<img width="600" height="637" alt="image" src="https://github.com/user-attachments/assets/b1b2f552-9e0a-475a-8061-a7334db05055" />*
+*<img width="899" height="637" alt="image" src="https://github.com/user-attachments/assets/ed85c4cd-52f2-4c3f-89ec-6604b5468b45" />*
 
 
 
